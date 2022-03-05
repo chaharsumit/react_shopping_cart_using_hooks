@@ -205,11 +205,25 @@ function App() {
   let products = sendProducts();
 
   function incQuantity(item){
-    console.log(item);
+    let idx = cart.findIndex(product => product.id === item.id);
+    let cartArr = [...cart];
+    cartArr[idx].quantity += 1;
+    setCart(
+      cartArr
+    )
   }
 
   function decQuantity(item){
-    console.log(item);
+    let idx = cart.findIndex(product => product.id === item.id);
+    let cartArr = [...cart];
+    if(cartArr[idx].quantity - 1 === 0){
+      setCart(cartArr);
+    }else{
+      cartArr[idx].quantity -= 1;
+      setCart(
+        cartArr
+      )
+    }
   }
 
   function handleSelect(event){
